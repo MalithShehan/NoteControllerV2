@@ -1,7 +1,8 @@
 package lk.ihse.gdse68.NoteCollentorV2.dto.impl;
 
-import lk.ijse.gdse.aad68.notetaker.customObj.NoteResponse;
-import lk.ijse.gdse.aad68.notetaker.dto.SuperDTO;
+
+import lk.ihse.gdse68.NoteCollentorV2.customObj.NoteResponse;
+import lk.ihse.gdse68.NoteCollentorV2.dto.SuperDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,11 +1,11 @@
 package lk.ihse.gdse68.NoteCollentorV2.controller;
 
-import lk.ijse.gdse.aad68.notetaker.customObj.UserResponse;
-import lk.ijse.gdse.aad68.notetaker.dto.impl.UserDTO;
-import lk.ijse.gdse.aad68.notetaker.exception.DataPersistFailedException;
-import lk.ijse.gdse.aad68.notetaker.exception.UserNotFoundException;
-import lk.ijse.gdse.aad68.notetaker.service.UserService;
-import lk.ijse.gdse.aad68.notetaker.util.AppUtil;
+import lk.ihse.gdse68.NoteCollentorV2.customObj.UserResponse;
+import lk.ihse.gdse68.NoteCollentorV2.dto.impl.UserDTO;
+import lk.ihse.gdse68.NoteCollentorV2.exception.DataPersistFailedException;
+import lk.ihse.gdse68.NoteCollentorV2.exception.UserNotFoundException;
+import lk.ihse.gdse68.NoteCollentorV2.service.UserService;
+import lk.ihse.gdse68.NoteCollentorV2.util.AppUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,15 +25,16 @@ public class UserController {
     //Save User
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> saveUser(
-         @RequestPart("firstName") String firstName,
-         @RequestPart ("lastName") String lastName,
-         @RequestPart ("email") String email,
-         @RequestPart ("password") String password,
-         @RequestPart ("profilePic") MultipartFile profilePic) {
+            @RequestPart("firstName") String firstName,
+            @RequestPart ("lastName") String lastName,
+            @RequestPart ("email") String email,
+            @RequestPart ("password") String password,
+            @RequestPart ("profilePic") MultipartFile profilePic) {
         // Handle profile pic
         try {
-            //byte [] imageByteCollection = profilePic.getBytes();
-            String base64ProfilePic = AppUtil.toBase64ProfilePic(profilePic);
+            byte [] imageByteCollection = profilePic.getBytes();
+
+            String base64ProfilePic = AppUtil.toBase64ProfilePic(imageByteCollection);
             // build the user object
             UserDTO buildUserDTO = new UserDTO();
             buildUserDTO.setFirstName(firstName);
@@ -71,15 +72,17 @@ public class UserController {
     }
     @PatchMapping(value = "/{id}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> updateUser(
-             @PathVariable ("id") String id,
-             @RequestPart("updateFirstName") String updateFirstName,
-             @RequestPart ("updateLastName") String updateLastName,
-             @RequestPart ("updateEmail") String updateEmail,
-             @RequestPart ("updatePassword") String updatePassword,
-             @RequestPart ("updateProfilePic") MultipartFile updateProfilePic
+            @PathVariable ("id") String id,
+            @RequestPart("updateFirstName") String updateFirstName,
+            @RequestPart ("updateLastName") String updateLastName,
+            @RequestPart ("updateEmail") String updateEmail,
+            @RequestPart ("updatePassword") String updatePassword,
+            @RequestPart ("updateProfilePic") MultipartFile updateProfilePic
     ){
         try {
-            String updateBase64ProfilePic = AppUtil.toBase64ProfilePic(updateProfilePic);
+            byte [] imageByteCollection = updateProfilePic.getBytes();
+            String updateBase64ProfilePic = AppUtil.toBase64ProfilePic(imageByteCollection);
+
             var updateUser = new UserDTO();
             updateUser.setUserId(id);
             updateUser.setFirstName(updateFirstName);

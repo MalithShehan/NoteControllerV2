@@ -1,5 +1,6 @@
 package lk.ihse.gdse68.NoteCollentorV2.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
