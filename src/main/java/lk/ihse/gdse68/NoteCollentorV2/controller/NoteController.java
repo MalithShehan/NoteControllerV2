@@ -1,6 +1,5 @@
 package lk.ihse.gdse68.NoteCollentorV2.controller;
 
-
 import lk.ihse.gdse68.NoteCollentorV2.customObj.NoteResponse;
 import lk.ihse.gdse68.NoteCollentorV2.dto.impl.NoteDTO;
 import lk.ihse.gdse68.NoteCollentorV2.exception.DataPersistFailedException;
