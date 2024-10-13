@@ -4,7 +4,9 @@ import lk.ihse.gdse68.NoteCollentorV2.dto.impl.UserDTO;
 import lk.ihse.gdse68.NoteCollentorV2.exception.DataPersistFailedException;
 import lk.ihse.gdse68.NoteCollentorV2.jwtModels.JWTResponse;
 import lk.ihse.gdse68.NoteCollentorV2.jwtModels.SignIn;
+import lk.ihse.gdse68.NoteCollentorV2.service.UserService;
 import lk.ihse.gdse68.NoteCollentorV2.util.AppUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,9 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("api/v1/auth")
 public class AuthController {
+    @Autowired
+    private  UserService userService;
+
     @PostMapping(value = "signUp", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<JWTResponse> signUp(
             @RequestPart("firstName") String firstName,
