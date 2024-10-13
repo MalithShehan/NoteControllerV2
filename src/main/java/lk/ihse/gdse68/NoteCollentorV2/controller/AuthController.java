@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 public class AuthController {
     @Autowired
     private  UserService userService;
-
     @PostMapping(value = "signUp", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<JWTResponse> signUp(
             @RequestPart("firstName") String firstName,
